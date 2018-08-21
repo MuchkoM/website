@@ -3,13 +3,13 @@
 {% load staticfiles %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
 ﻿
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> {% block title %}Sound cloud {% endblock %}</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -20,9 +20,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'music:index_album' %}"> Hahaha</a>
+            <a class="navbar-brand" href="{% url 'music:index_album' %}">Music cloud</a>
         </div>
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
                 <li class="">
                     <a href="{% url 'music:index_album' %}">
@@ -36,7 +36,7 @@
                         Artists
                     </a>
                 </li>
-                <li class="">
+                <li class="active">
                     <a href="{% url 'music:index_song' %}">
                         <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp;
                         Songs

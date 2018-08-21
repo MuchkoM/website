@@ -29,7 +29,6 @@ class DetailViewArtist(DetailView):
 
 
 class FavoriteViewSong(ListView):
-    model = Song
     template_name = 'music/favorite.html'
     context_object_name = 'favorite_songs'
 

@@ -1,4 +1,5 @@
 {% extends 'music/base.html' %}
+{% block title %}Songs{% endblock %}
 {% block body %}
     {% for song in songs %}
         <a href="{% url 'music:detail_artist' song.album.artist.id %}">{{ song.album.artist.name }}</a>
