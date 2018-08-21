@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artist detail</title>
+</head>
+<body>
+<a href="{% url 'music:index_album' %}"> Albums</a> <a href="{% url 'music:index_artist' %}"> Artist</a> <a href="{% url 'music:favorite' %}"> Favorite</a><br>
+<a href="{% url 'music:detail_artist' artist.id %}"> <IMG src="{{ artist.photo }}" height="10%" width="10%"><br>
+    <label> {{ artist.name }}</label><br></a>
+<br>
+
+{% for album in albums %}
+    <a href="{% url 'music:detail_album' album.id %}">
+    <IMG src="{{ album.logo }}" height="50%" width="10%"><br>
+    <label> {{ album.title }}</label><br><br></a>
+{% endfor %}
+</body>
+</html>

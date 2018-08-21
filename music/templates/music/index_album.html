@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album library</title>
+</head>
+<body>
+<a href="{% url 'music:index_album' %}"> Albums</a> <a href="{% url 'music:index_artist' %}"> Artist</a> <a href="{% url 'music:favorite' %}"> Favorite</a><br>
+{% if albums %}
+    All albums <br>
+    {% for album in albums %}
+        <a href="{% url 'music:detail_album' album.id %}"><img src="{{ album.logo }}"  width="10%"><br> {{ album.title }} </a><br>
+    {% endfor %}
+{% else %}
+    You dont have albums
+{% endif %}
+
+</body>
+</html>

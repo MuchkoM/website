@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorite song</title>
+</head>
+<body>
+<a href="{% url 'music:index_album' %}"> Albums</a> <a href="{% url 'music:index_artist' %}"> Artist</a> <a href="{% url 'music:favorite' %}"> Favorite</a><br>
+{% for song in song_favorite %}
+    <a href="{% url 'music:detail_artist' song.album.artist.id %}">{{ song.album.artist.name }}</a>
+    <a href="{% url 'music:detail_album' song.album.id %}">{{ song.album.title }}</a> {{ song.title }}
+    {{ song.type }}<br>
+{% endfor %}
+</body>
+</html>
