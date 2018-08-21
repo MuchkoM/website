@@ -1,0 +1,6 @@
+{% extends 'music/base.html' %}
+{% block body %}
+    <a href="{% url 'music:detail_artist' song.album.artist.id %}">{{ song.album.artist.name }}</a>
+    <a href="{% url 'music:detail_album' song.album.id %}">{{ song.album.title }}</a> {{ song.title }}
+    {{ song.type }}<br>
+{% endblock %}
