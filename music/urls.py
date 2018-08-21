@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import DetailViewArtist, DetailViewAlbum, FavoriteViewSong, IndexViewArtist, IndexViewAlbum
+from .views import DetailViewArtist, DetailViewAlbum, FavoriteViewSong, IndexViewArtist, IndexViewAlbum, IndexViewSong, \
+    DetailViewSong
 
 app_name = 'music'
 
@@ -13,9 +14,15 @@ url_album = [
     path('<int:pk>', DetailViewAlbum.as_view(), name='detail_album'),
 ]
 
+url_song = [
+    path('', IndexViewSong.as_view(), name='index_song'),
+    path('<int:pk>', DetailViewSong.as_view(), name='detail_song'),
+]
+
 urlpatterns = [
     path('', include(url_album)),
     path('album/', include(url_album)),
     path('artist/', include(url_artist)),
+    path('song/', include(url_song)),
     path('favorite/', FavoriteViewSong.as_view(), name='favorite_song'),
 ]

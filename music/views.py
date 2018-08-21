@@ -35,3 +35,15 @@ class FavoriteViewSong(ListView):
 
     def get_queryset(self):
         return Song.objects.filter(is_favorite=True)
+
+
+class IndexViewSong(ListView):
+    model = Song
+    template_name = 'music/index_song.html'
+    context_object_name = 'songs'
+
+
+class DetailViewSong(DetailView):
+    model = Song
+    template_name = 'music/detail_song.html'
+    context_object_name = 'song'
