@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'music:index_album' %}"> Albums</a> <a href="{% url 'music:index_artist' %}"> Artist</a> <a
+        href="{% url 'music:favorite_song' %}"> Favorite</a><br>
+{% block body %}
+{% endblock %}
+</body>
+</html>

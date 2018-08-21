@@ -1,9 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
-
 class Artist(models.Model):
     name = models.CharField(max_length=50)
     photo = models.CharField(max_length=256)
@@ -26,7 +23,7 @@ class Song(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     type = models.CharField(max_length=10)
-    is_favorite = models.BooleanField(default=False)
+    is_favorite = models.BooleanField()
 
     def __str__(self):
         return self.title

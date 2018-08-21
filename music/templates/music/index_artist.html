@@ -1,0 +1,8 @@
+{% extends 'music/base.html' %}
+{% block body %}
+    {% for artist in artists %}
+        <a href="{% url 'music:detail_artist' artist.id %}">
+            <IMG src="{{ artist.photo }}" width="10%"><br>
+            <label> {{ artist.name }}</label></a><br><br>
+    {% endfor %}
+{% endblock %}

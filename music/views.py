@@ -1,33 +1,37 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
 from music.models import Album, Artist, Song
+from django.views.generic import ListView, DetailView
 
 app_name = 'music'
 
 
-def index_artist(request):
-    artists = Artist.objects.all()
-    return render(request, 'music/index_artists.html', {'artists': artists})
+class IndexViewAlbum(ListView):
+    model = Album
+    template_name = 'music/index_album.html'
+    context_object_name = 'albums'
 
 
-def detail_artist(request, id):
-    artist = get_object_or_404(Artist, id=id)
-    albums = artist.album_set.filter(artist=artist)
-    return render(request, 'music/detail_artist.html', {'albums': albums, 'artist': artist})
+class DetailViewAlbum(DetailView):
+    model = Album
+    template_name = 'music/detail_album.html'
+    context_object_name = 'album'
 
 
-def index_album(request):
-    albums = Album.objects.all()
-    return render(request, 'music/index_album.html', {'albums': albums})
+class IndexViewArtist(ListView):
+    model = Artist
+    template_name = 'music/index_artist.html'
+    context_object_name = 'artists'
 
 
-def detail_album(request, id):
-    album = get_object_or_404(Album, id=id)
-    artist = album.artist
-    songs = album.song_set.all()
-    return render(request, 'music/detail_album.html', {'album': album, 'songs': songs, 'artist': artist})
+class DetailViewArtist(DetailView):
+    model = Artist
+    template_name = 'music/detail_artist.html'
+    context_object_name = 'artist'
 
 
-def favorite(request):
-    song_favorite = Song.objects.filter(is_favorite=True)
+class FavoriteViewSong(ListView):
+    model = Song
+    template_name = 'music/favorite.html'
+    context_object_name = 'favorite_songs'
 
-    return render(request, 'music/favorite.html', {'song_favorite': song_favorite})
+    def get_queryset(self):
+        return Song.objects.filter(is_favorite=True)

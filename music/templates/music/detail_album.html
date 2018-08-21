@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Album detail</title>
-</head>
-<body>
-<a href="{% url 'music:index_album' %}"> Albums</a> <a href="{% url 'music:index_artist' %}"> Artist</a> <a href="{% url 'music:favorite' %}"> Favorite</a><br>
-<a href="{% url 'music:detail_artist' artist.id %}"> <IMG src="{{ artist.photo }}" height="10%" width="10%"><br>
-    <label> {{ artist.name }}</label><br></a>
-<br>
-<a href="{% url 'music:detail_album' artist.id %}">
-<IMG src="{{ album.logo }}" height="50%" width="10%"><br>
-    <label> {{ album.title }}</label><br></a> <br>
-
-{% for song in songs %}
-    {{ song.title }} {{ song.type }} <!--{{ song.is_favorite }}--><br>
-{% endfor %}
-</body>
-</html>
+{% extends 'music/base.html' %}
+{% block body %}
+    <a href="{% url 'music:detail_artist' album.artist.id %}">
+        <IMG src="{{ album.artist.photo }}" width="10%"><br>
+        <label> {{ album.artist.name }}</label><br></a><br>
+    <a href="{% url 'music:detail_album' album.artist.id %}">
+        <IMG src="{{ album.logo }}" width="10%"><br>
+        <label> {{ album.title }}</label><br></a><br>
+    {% for song in album.song_set.all %}
+        {{ song.title }} {{ song.type }} <!--{{ song.is_favorite }}--><br>
+    {% endfor %}
+{% endblock %}
