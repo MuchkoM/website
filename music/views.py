@@ -1,7 +1,18 @@
 from music.models import Album, Artist, Song
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView, RedirectView
+from django.shortcuts import render
+from django.http.response import HttpResponseRedirect
+from django.urls import reverse
+
 
 app_name = 'music'
+
+
+def add_artist(request):
+    if request.POST:
+        return HttpResponseRedirect(reverse('music:add-artist'))
+    else:
+        return render(request, 'music/add_artist.html')
 
 
 class IndexViewAlbum(ListView):

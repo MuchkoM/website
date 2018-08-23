@@ -1,12 +1,14 @@
 from django.urls import path, include
-from .views import DetailViewArtist, DetailViewAlbum, FavoriteViewSong, IndexViewArtist, IndexViewAlbum, IndexViewSong, \
-    DetailViewSong
+from .views import (DetailViewArtist, DetailViewAlbum, FavoriteViewSong, IndexViewArtist,
+                    IndexViewAlbum, IndexViewSong, add_artist, DetailViewSong)
+from django.views.generic import RedirectView
 
 app_name = 'music'
 
 url_artist = [
     path('', IndexViewArtist.as_view(), name='index_artist'),
     path('<int:pk>', DetailViewArtist.as_view(), name='detail_artist'),
+    path('add', add_artist, name='add-artist')
 ]
 
 url_album = [
@@ -20,7 +22,7 @@ url_song = [
 ]
 
 urlpatterns = [
-    path('', include(url_album)),
+    path('', RedirectView.as_view(url='album/')),
     path('album/', include(url_album)),
     path('artist/', include(url_artist)),
     path('song/', include(url_song)),
